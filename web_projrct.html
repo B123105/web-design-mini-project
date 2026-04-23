@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Farmer Help App</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:#e8f5e9;
+text-align:center;
+margin:0;
+}
+
+header{
+background:green;
+color:white;
+padding:20px;
+font-size:35px;
+}
+
+.container{
+width:80%;
+margin:auto;
+padding:20px;
+}
+
+.box{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:15px;
+box-shadow:0 0 10px gray;
+}
+
+input,select{
+padding:10px;
+width:250px;
+margin:10px;
+}
+
+button{
+background:green;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:18px;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+#result{
+margin-top:20px;
+font-size:22px;
+color:blue;
+display:none;
+}
+
+footer{
+background:green;
+color:white;
+padding:15px;
+margin-top:30px;
+}
+</style>
+</head>
+<body>
+
+<header>
+🌾 Farmer Help App
+</header>
+
+<div class="container">
+
+<div class="box">
+<h2>Weather Information</h2>
+<button id="weatherBtn">Check Weather</button>
+
+<div id="weatherResult">
+<p>Temperature: 28°C</p>
+<p>Humidity: 70%</p>
+<p>Forecast: Light Rain</p>
+</div>
+</div>
+
+
+<div class="box">
+<h2>Crop Suggestion</h2>
+
+<select id="soil">
+<option>Select Soil Type</option>
+<option>Loamy</option>
+<option>Clay</option>
+<option>Sandy</option>
+</select>
+
+<br>
+
+<button id="suggestBtn">
+Get Crop Suggestion
+</button>
+
+<div id="result"></div>
+</div>
+
+
+<div class="box">
+<h2>Fertilizer Tips</h2>
+<button id="tipBtn">Show Tips</button>
+
+<div id="tips">
+<p>✔ Use Organic Compost</p>
+<p>✔ Add Nitrogen for Wheat</p>
+<p>✔ Use Potassium for Rice</p>
+</div>
+</div>
+
+</div>
+
+<footer>
+Farmer Help Web Application
+</footer>
+
+
+<script>
+$(document).ready(function(){
+
+$("#weatherResult").hide();
+$("#tips").hide();
+
+$("#weatherBtn").click(function(){
+$("#weatherResult").slideToggle();
+});
+
+$("#tipBtn").click(function(){
+$("#tips").fadeToggle();
+});
+
+$("#suggestBtn").click(function(){
+
+let soil=$("#soil").val();
+let crop="";
+
+if(soil=="Loamy"){
+crop="Best Crop: Wheat 🌾";
+}
+
+else if(soil=="Clay"){
+crop="Best Crop: Rice 🌱";
+}
+
+else if(soil=="Sandy"){
+crop="Best Crop: Groundnut 🥜";
+}
+
+else{
+crop="Please select soil type";
+}
+
+$("#result").hide().html(crop).fadeIn();
+
+});
+
+});
+</script>
+
+</body>
+</html>
